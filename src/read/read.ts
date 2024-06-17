@@ -1,5 +1,4 @@
 import { readFile } from './file'
-import { readDir } from './dir'
 import { isDirectory } from '../util'
 import { readTree } from './tree'
 import type { ReadTreeOptions, TreeDataUnit } from './type'
@@ -8,60 +7,53 @@ import { isEffectArray, isString } from 'asura-eye'
 export interface ReadOptions extends ReadTreeOptions {
   /**
    * @description 树状数据
-   * @default: false
+   * @default {true}
    */
   tree?: boolean
   /**
    * @description 数据合并成一个字符串, 没有路径等其他信息
    * @type {boolean|string}
-   * @default false
+   * @default {false}
    * @version 0.0.7
    */
   dataMerge?: boolean | string
 }
 
 /**
- * @title read<T>
+ * @title read
  * @description 读取文件(夹)
  * @param {string} path
  * @param {ReadOptions} [options]
- * @returns {T|string|string[]}
+ * @returns {string|string[]}
  */
-export function read<T = string>(
+export function read(
   path: string,
   options: ReadOptions = {}
-): T | string | string[] | TreeDataUnit[] {
+): string | TreeDataUnit {
   const {
-    tree = false,
+    tree = true,
     encoding = 'utf8',
     flag = 'r',
-    dataMerge = false,
-    withFileTypes
+    dataMerge = false
   } = options
 
   if (isDirectory(path)) {
+    const data = readTree(path, options)
     if (dataMerge) {
-      const data = readTree(path, options)
-      if (dataMerge) {
-        const gap = isString(options.dataMerge) ? options.dataMerge : ''
-        const list: string[] = []
-        const loop = (array: any[]) => {
-          if (!isEffectArray(array)) return
-          array.forEach((item: any) => {
-            const { children, data } = item
-            if (isString(data) && data.length > 0) list.push(data)
-            if (isEffectArray(children)) loop(children)
-          })
-        }
-        loop(data)
-        return list.join(gap)
+      const gap = isString(options.dataMerge) ? options.dataMerge : '\n'
+      const list: string[] = []
+      const loop = (target: any) => {
+        const { children, data } = target
+        list.push(data)
+        if (!isEffectArray(children)) return
+        children.forEach(loop)
       }
-      return data
+      loop(data)
+      return list.join(gap)
     }
-    if (tree) return readTree(path, options)
-    if (dataMerge) return ''
-    return readDir(path, { encoding, withFileTypes })
+    if (tree) return data
+    return data
   }
 
-  return readFile<T>(path, { encoding, flag })
+  return readFile(path, { encoding, flag })
 }

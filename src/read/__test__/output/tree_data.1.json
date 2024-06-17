@@ -12,26 +12,9 @@
       "path": "D:\\dev\\npm\\dev_space\\packages\\0file-system\\src\\read\\__test__\\input\\db",
       "isDir": true,
       "catalogue": [
-        "copy",
         "index.d.ts"
       ],
       "children": [
-        {
-          "name": "copy",
-          "path": "D:\\dev\\npm\\dev_space\\packages\\0file-system\\src\\read\\__test__\\input\\db\\copy",
-          "isDir": true,
-          "catalogue": [
-            "index.d.ts"
-          ],
-          "children": [
-            {
-              "name": "index.d.ts",
-              "path": "D:\\dev\\npm\\dev_space\\packages\\0file-system\\src\\read\\__test__\\input\\db\\copy\\index.d.ts",
-              "isDir": false,
-              "data": "export interface CopyConfig {\r\n    clearEmptyDir?: boolean;\r\n    ignore?: string[];\r\n}\r\nexport declare function copy(fromPath: string, toPath: string, config?: CopyConfig): void;\r\n\r\n// 3"
-            }
-          ]
-        },
         {
           "name": "index.d.ts",
           "path": "D:\\dev\\npm\\dev_space\\packages\\0file-system\\src\\read\\__test__\\input\\db\\index.d.ts",

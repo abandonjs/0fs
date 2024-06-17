@@ -5,7 +5,7 @@ import { match } from './match';
 /**
  * @title isDirectory 
  * @description 是否为文件夹
- * @param path {PathLike} 路径
+ * @param {PathLike} path 路径
  * @returns {boolean}
  * @since 0.1.0
  */
@@ -17,8 +17,8 @@ export function isDirectory(path: PathLike): boolean {
 /**
  * @title isEmptyDirectory 
  * @description 是否为文件夹
- * @param path {PathLike} 路径
- * @param ignore {string|string[]} 路径
+ * @param {PathLike} path 路径
+ * @param {string|string[]} [ignore] 路径
  * @returns {boolean}
  * @since 0.1.0
  */
@@ -35,7 +35,7 @@ export function isEmptyDirectory(path: PathLike, ignore?: string | string[]): bo
 /**
  * @title isFile
  * @description 是否为文件
- * @param path {PathLike} 路径
+ * @param {PathLike} path 路径
  * @returns {boolean}
  * @since 0.1.0
  */

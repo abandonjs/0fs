@@ -21,8 +21,7 @@ export interface ReadFileOptions {
 export interface TreeDataUnit {
   name: string
   isDir: boolean
-  files: string[]
-  dirs: string[]
+  catalogue?: string[]
   path?: string
   data?: string
   children?: TreeDataUnit[]
@@ -32,11 +31,8 @@ export interface TreeDataUnit {
  *
  */
 export interface ReadTreeOptions {
-  use?: string[]
   depth?: 'auto' | number
   ignore?: string[]
-  files?: string[]
-  dirs?: string[]
   /**
    * @description 读取文件数据
    * @default true

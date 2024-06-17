@@ -23,12 +23,13 @@ export interface MergeJSONOptions extends ObjectType, ObjectEncodingOptions, Abo
  * @description 合并多个json文件
  * @param {string|string[]} entry
  * @param {string} output
- * @param {MergeJSONOptions} option
+ * @param {MergeJSONOptions} [option]
  */
 export function mergeJSON(entry: string | string[], output: string, option: MergeJSONOptions = {}) {
   const { tree = false, toDefaultExport = false, ...rest } = option
 
   const handleItemData = (value: any) => {
+    console.log(value)
     if (isArray(value)) {
       value.forEach((item, index) => {
         value[index] = handleItemData(item)

@@ -3,9 +3,9 @@ import fs, { type MakeDirectoryOptions } from 'fs'
 /**
  * @title writeDir
  * @description 创建文件目录
- * @param path {string} 文件目录
- * @param options {MakeDirectoryOptions={recursive:true}} 
- * @returns 
+ * @param {string} path 文件目录
+ * @param {MakeDirectoryOptions={recursive:true}} [options] 
+ * @returns {boolean}
  */
 export function mkdir(path: string, options: MakeDirectoryOptions = {}) {
 
